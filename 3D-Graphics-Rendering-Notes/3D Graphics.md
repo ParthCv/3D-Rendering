@@ -49,5 +49,14 @@ For our process input we can add and event to check for user events. The only ev
 
 Then we can draw a color to the rendering by using `SDL_SetRendererDrawColor()` and passing the renderer and color. And then we need to clear the renderer and present the view. We need to clear the renderer before because we are drawing over the entire screen. And there are other thing that change the renderer and also another reason would be since the draw color is another API call.
 
+After running the code the renderer should look like this.
+
+![[./img/Red Window.png]]
+
 **Note - for linker error we could pass the lib dependencies as a flag.**
+
+## Declaring a Color Buffer
+Now we have been able to display and render a window, simple. Next, we want to control each pixel, which brings us to the color buffer / pixel buffer. Basic idea is we can assign a color to each pixel by adjusting numbers. Now the idea is that in memory we have an array with numbers (hexadecimal) which represents our color buffer, which we give to sdl to render as a 'texture'. The size of the array depends on the size of the window.
+
+
 

@@ -25,7 +25,7 @@ bool initialize_window(void) {
 	//			3&4 - width and height
 	//			5 - bunch of flags (broder, shadow etc)
 	window = SDL_CreateWindow(
-		NULL,
+		"Red Window",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
 		800,
