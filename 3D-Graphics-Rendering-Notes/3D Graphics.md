@@ -51,7 +51,7 @@ Then we can draw a color to the rendering by using `SDL_SetRendererDrawColor()` 
 
 After running the code the renderer should look like this.
 
-![[./img/Red Window.png]]
+![Red Image](./img/RedWindow.png)
 
 **Note - for linker error we could pass the lib dependencies as a flag.**
 
