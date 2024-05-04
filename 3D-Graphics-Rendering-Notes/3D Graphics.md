@@ -35,4 +35,12 @@ Why C - pretty simple, fast, memory management, portable. SDL, the library we wi
 	 - Go to the properties of the solution, and add the lib and include folders to the Library Directories and Include Directories in the VC Directories.
 	 - Also need to include these to the linker so we can build the project properly with files we need to include. The new dependencies are `SDL2.lib` and `SDL2main.lib`
 	 - For SDL to work the main function should look like this with the args - `int main(int argc, char* args[]()` 
-	 - After all this our code builds properly but we still need to include the `.dll` file. This file can be found in the lib folder, and then we can add it to 
+	 - After all this our code builds properly but we still need to include the `.dll` file. This file can be found in the lib folder, and then we can add it to folder for the project.
+
+# SDL Setup and Color Buffer
+
+Lets try and set the color of a single pixel
+## Creating a SDL Window
+To see our pixels and 3D objects, we need a window and renderer added to that window. To do this we need to initialize both. SDL has functions to create both for us, both functions take params that can help modify the window. `SDL_CreateWindow()` and `SDL_CreateRenderer()`
+
+
