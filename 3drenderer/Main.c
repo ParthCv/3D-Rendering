@@ -6,7 +6,7 @@ SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
 
 // Flag to check if the window and renderer were initialized.
-bool is_running;
+bool is_running = false;
 
 bool initialize_window(void) {
 	//Initialize the hardware calls for SDL
@@ -52,10 +52,50 @@ bool initialize_window(void) {
 	return true;
 }
 
+void setup() {
+
+}
+
+void process_input() {
+	SDL_Event event;	
+	SDL_PollEvent(&event); // Stores the event happening into the passed event
+
+	switch (event.type) {
+		// SDL_QUIT - triggers when the X button on the window is clicked
+		case SDL_QUIT:
+			is_running = false;
+			break;
+		case SDL_KEYDOWN:
+			// Key symbol check for esc
+			if (event.key.keysym.sym == SDLK_ESCAPE)
+				is_running = false;
+			break;
+		default:
+			break;
+	}
+}
+
+void update() {
+
+}
+
+void render() {
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Drawing the renderer with a color
+	SDL_RenderClear(renderer); // Clearing the renderer before we update it
+
+	SDL_RenderPresent(renderer); // Now once its clear we present it.
+}
+
 int main(int argc, char* args[]) {
-	
-	// Create a SDL window
 	is_running = initialize_window();
+
+	setup();
+
+	while (is_running) {
+		process_input();
+		update();
+		render();
+	}
 
 	return 0;
 }

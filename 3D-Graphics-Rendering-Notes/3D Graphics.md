@@ -38,9 +38,16 @@ Why C - pretty simple, fast, memory management, portable. SDL, the library we wi
 	 - After all this our code builds properly but we still need to include the `.dll` file. This file can be found in the lib folder, and then we can add it to folder for the project.
 
 # SDL Setup and Color Buffer
-
 Lets try and set the color of a single pixel
-## Creating a SDL Window
+## Creating an SDL Window
 To see our pixels and 3D objects, we need a window and renderer added to that window. To do this we need to initialize both. SDL has functions to create both for us, both functions take params that can help modify the window. `SDL_CreateWindow()` and `SDL_CreateRenderer()`
 
+## Rendering an SDL Window
+Same idea as the game loop where we setup first, then enter a loop where we get the users input, then update the frame and the render the new the frame, which is the skeleton of a game.
+
+For our process input we can add and event to check for user events. The only events we can check for now our if the user clicks the x button. To do this SDL has `SDL_QUIT` which is an event that get called when the x button is pressed and we need to stop the renderer too. Other is for pressing escape, so when the event is a key down and the key symbol is escape we need to exit out of the loop. 
+
+Then we can draw a color to the rendering by using `SDL_SetRendererDrawColor()` and passing the renderer and color. And then we need to clear the renderer and present the view. We need to clear the renderer before because we are drawing over the entire screen. And there are other thing that change the renderer and also another reason would be since the draw color is another API call.
+
+**Note - for linker error we could pass the lib dependencies as a flag.**
 
