@@ -6,7 +6,7 @@
 ## Overview
 - Pure C and SDL - why? for code to be portable. it is easy to go from C  to C++ or any other language or even OS.
 - Foundation of 3D graphics - rasterize a line, drawing a pixel, mapping a triangle etc.
-- Setup an env 
+- Setup an environment
 - Trigonometry and Lin Algebra
 - Vertices and Meshes
 - Displaying Pixels and Color Buffer
@@ -56,7 +56,23 @@ After running the code the renderer should look like this.
 **Note - for linker error we could pass the lib dependencies as a flag.**
 
 ## Declaring a Color Buffer
-Now we have been able to display and render a window, simple. Next, we want to control each pixel, which brings us to the color buffer / pixel buffer. Basic idea is we can assign a color to each pixel by adjusting numbers. Now the idea is that in memory we have an array with numbers (hexadecimal) which represents our color buffer, which we give to sdl to render as a 'texture'. The size of the array depends on the size of the window.
+Now we have been able to display and render a window, simple. Next, we want to control each pixel, which brings us to the color buffer / pixel buffer. Basic idea is we can assign a color to each pixel by adjusting numbers. Now the idea is that in memory we have an array with numbers (hexadecimal) which represents our color buffer, which we give to SDL to render as a 'texture'. The size of the array depends on the size of the window.
 
+Now each number is a hexadecimal with 8 digits, where every 2 digits are used to represent Alpha, Red, Green and Blue. Which makes sense as we know that for each value in RGBA is form 0 - 255 aka 256 options. And 2 hexadecimal digits represent `16 * 16 = 256` values which makes it possible to represent every possible color.
 
+$$
+0xFFFF0000
+$$
+
+This represents the color red as alpha which is the transparency that is 255, meaning fully opaque and red is also max while green and blue are zeros.  
+
+Now we need a data structure to store all these numbers, which means we need 32 bits to store each value. Well, isn't that just an int? (int = 4bytes = 32bits), but the problem comes with C, that on different machines the bits required to store ints is different. On a 16-bit machine an int takes 2bytes to store so we wont have enough bits to represent all the RGBA values. So we need to guarantee that we have a fixed-size type. 
+
+The new C standard comes with type of fixed-size type, example `uint8_t` which has a unsigned int of 8 bits. `_t` doesn't really have a special meaning, but it just denotes a type name that are used my that standard of C. So for our case `uint32_t` aka an unsigned int of 32 bits should do the job.
+
+To represent our color buffer we can just create a pointer to an `uint32_t` so it would look something like this - `uint32_t* color_buffer` . Now why a pointer and not an array notation? well the pointer we are using is pointing in memory to the first pixel in the window. And then we need to define how big is the buffer? which is as big as the number of pixels in the window aka the height and width of window. 
+
+We still need to tell the compiler to allocate this memory to store our color buffer with all our encoded color values. We can just use `malloc` to do this to allocate a buffer of size `sizeof(uint32_t) * window_width * window_height` which is just the total bytes needed to represent all the pixels. And now with `[]` we can access each pixel, but keep in mind its not a table but a linear list.  So to access the pixel at row 3 and column 2 you would do it like this, `color_buffer[(window_width)*3 + 2]` because to move down the table you need to traverse down the you need to traverse the whole width of the table and the offset it by the column you want. 
+
+![Color Buffer Image](./img/ColorBufferTable.png)
 
