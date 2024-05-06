@@ -76,3 +76,9 @@ We still need to tell the compiler to allocate this memory to store our color bu
 
 ![Color Buffer Image](./img/ColorBufferTable.png)
 
+## SDL Texture
+In our renderer we first need to clear our color buffer.  We should be also able to clear the buffer with a color too. This we can just loop our color buffer and manually set the color for every item in the buffer. Now even after we set the buffer it doesn't actually set the buffer color on the renderer.
+
+We need to copy everything in our color buffer to a SDL texture and then we can just render this texture. The SDL texture need to know the renderer, the pixel format which is basically how we are encoding our color for us it would be `SDL_PIXELFORMAT_ARGB8888` , which tell you the order and bits for the values. Other flag we pass is `SDL_TEXTUREACCESS_STEAMING` which basically tell the renderer that this texture will update frequently and is lockable other options are [here](https://wiki.libsdl.org/SDL2/SDL_TextureAccess) . Other than this we give the width and height of the texture.
+
+Other than this we need a function to update the texture every "frame". SDL has a function to update a texture which we can send our puffer to with the texture pitch which it just the width of the texture, this would be in bytes. Next we need to tell SDL to update the renderer by calling the `SDL_RenderCopy` 
