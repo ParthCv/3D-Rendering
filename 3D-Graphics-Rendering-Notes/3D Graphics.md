@@ -94,3 +94,8 @@ But this is not real full screen but just a borderless window being stretched to
 
 ## Conclusion
 Now we have made our simple 2D raster from scratch. We have full control over every pixel and we have a simple game loop as well. I added some functionality to prove this by adding functions to draw rectangles and grids. But the code is messy and all in a single file so we should refactor before moving forward.
+
+# Header File Setup
+We already know about header files and implementation files. It would be a good idea to separate declarations and prototypes to the header file and then have the implementations in the C file. 
+
+We can separate our window and render creation stuff in `display.h` and `display.c`. This will make our code look more clean and better organized. With this we can start looking into some vector and points.
