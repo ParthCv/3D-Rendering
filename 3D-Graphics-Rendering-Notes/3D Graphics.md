@@ -91,3 +91,6 @@ Now with all this in we have a simple 2D raster in place and we have full contro
 Now something we really want is to set the display to Fullscreen, why not? So for the full screen all we need to do is change the window width and height. We can use `SDL_DisplayMode` to get the current monitors window width and height which we can assign to our SDL window.
 
 But this is not real full screen but just a borderless window being stretched to cover the screen. We can fix this by using `SDL_SetWindowFullscreen` which changes the window to real full screen with video mode.
+
+## Conclusion
+Now we have made our simple 2D raster from scratch. We have full control over every pixel and we have a simple game loop as well. I added some functionality to prove this by adding functions to draw rectangles and grids. But the code is messy and all in a single file so we should refactor before moving forward.

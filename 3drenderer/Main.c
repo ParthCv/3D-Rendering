@@ -29,7 +29,7 @@ bool initialize_window(void) {
 
 	// Use SDL to query the fullsceen max width and height
 	SDL_DisplayMode display_mode; //Struct for the display mode
-	SDL_GetCurrentDisplayMode(1, &display_mode); //Need the info for main display and pointer to the struct we created
+	SDL_GetCurrentDisplayMode(0, &display_mode); //Need the info for main display and pointer to the struct we created
 
 	//Now we have access to the width height and refresh rate of the display
 	window_width = display_mode.w;
@@ -43,7 +43,7 @@ bool initialize_window(void) {
 	//			3&4 - width and height
 	//			5 - bunch of flags (broder, shadow etc)
 	window = SDL_CreateWindow(
-		"Red Window",
+		NULL,
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
 		window_width,
@@ -67,10 +67,9 @@ bool initialize_window(void) {
 		return false;
 	}
 
+	// Set the window to real fullscreen with video mode
+	//SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 
-
-	//
-	SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 	return true;
 }
 
@@ -95,8 +94,6 @@ void setup(void) {
 		window_height
 	);
 }
-
-
 
 void process_input(void) {
 	SDL_Event event;	
@@ -154,13 +151,40 @@ void clear_color_buffer(uint32_t color) {
 	}
 }
 
+void draw_grid(uint32_t color, int spacing) {
+	// Vertical Lines
+	for (int i = 0; i < window_height; i++) {
+		for (int j = 0; j < window_width; j += spacing) {
+			color_buffer[(window_width * i) + j] = color;
+		}
+	}
+
+	// Horizontal Lines
+	for (int i = 0; i < window_height; i += spacing) {
+		for (int j = 0; j < window_width; j++) {
+			color_buffer[(window_width * i) + j] = color;
+		}
+	}
+}
+
+void draw_rect(int x, int y, int height, int width, uint32_t color) {
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < width; j++) {
+			color_buffer[(window_width * (y + i)) + (x + j)] = color;
+		}
+	}
+}
+
 void render(void) {
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Drawing the renderer with a color
 	SDL_RenderClear(renderer); // Clearing the renderer before we update it
 
+	draw_grid(0xFF0000FF, 100);
+	draw_rect(100, 200, 100, 150, 0xFF5489A0);
+
 	// render the new color on the buffer
 	render_color_buffer();
-	clear_color_buffer(0xFFFFFF00);
+	clear_color_buffer(0xFFCABFFF);
 
 	SDL_RenderPresent(renderer); // Now once its clear we present it.
 }
