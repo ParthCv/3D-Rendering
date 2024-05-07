@@ -82,3 +82,12 @@ In our renderer we first need to clear our color buffer.  We should be also able
 We need to copy everything in our color buffer to a SDL texture and then we can just render this texture. The SDL texture need to know the renderer, the pixel format which is basically how we are encoding our color for us it would be `SDL_PIXELFORMAT_ARGB8888` , which tell you the order and bits for the values. Other flag we pass is `SDL_TEXTUREACCESS_STEAMING` which basically tell the renderer that this texture will update frequently and is lockable other options are [here](https://wiki.libsdl.org/SDL2/SDL_TextureAccess) . Other than this we give the width and height of the texture.
 
 Other than this we need a function to update the texture every "frame". SDL has a function to update a texture which we can send our puffer to with the texture pitch which it just the width of the texture, this would be in bytes. Next we need to tell SDL to update the renderer by calling the `SDL_RenderCopy` 
+
+Now with all this in we have a simple 2D raster in place and we have full control of our color buffer, with this we can change even a subsection of the window.
+
+![2D Raser](./img/2DRaster.png)
+
+## Fullscreen Window
+Now something we really want is to set the display to Fullscreen, why not? So for the full screen all we need to do is change the window width and height. We can use `SDL_DisplayMode` to get the current monitors window width and height which we can assign to our SDL window.
+
+But this is not real full screen but just a borderless window being stretched to cover the screen. We can fix this by using `SDL_SetWindowFullscreen` which changes the window to real full screen with video mode.

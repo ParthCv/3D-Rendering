@@ -27,6 +27,14 @@ bool initialize_window(void) {
 		return false;
 	}
 
+	// Use SDL to query the fullsceen max width and height
+	SDL_DisplayMode display_mode; //Struct for the display mode
+	SDL_GetCurrentDisplayMode(1, &display_mode); //Need the info for main display and pointer to the struct we created
+
+	//Now we have access to the width height and refresh rate of the display
+	window_width = display_mode.w;
+	window_height = display_mode.h;
+
 	// Creating a SDL window and the renderer
 	// We open a window and add the renderer to it
 
@@ -59,6 +67,10 @@ bool initialize_window(void) {
 		return false;
 	}
 
+
+
+	//
+	SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 	return true;
 }
 
