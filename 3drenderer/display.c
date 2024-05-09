@@ -119,6 +119,9 @@ void draw_rect(int x, int y, int height, int width, uint32_t color) {
 	}
 }
 
+void draw_pixel(int x, int y, uint32_t color) {
+	color_buffer[(window_width * y) + x] = color;
+}
 
 void destroy_window(void) {
 	free(color_buffer);
@@ -129,6 +132,7 @@ void destroy_window(void) {
 	// Destroy the initializer
 	SDL_Quit();
 }
+
 
 
 

@@ -94,8 +94,36 @@ But this is not real full screen but just a borderless window being stretched to
 
 ## Conclusion
 Now we have made our simple 2D raster from scratch. We have full control over every pixel and we have a simple game loop as well. I added some functionality to prove this by adding functions to draw rectangles and grids. But the code is messy and all in a single file so we should refactor before moving forward.
-
 # Header File Setup
 We already know about header files and implementation files. It would be a good idea to separate declarations and prototypes to the header file and then have the implementations in the C file. 
 
-We can separate our window and render creation stuff in `display.h` and `display.c`. This will make our code look more clean and better organized. With this we can start looking into some vector and points.
+We can separate our window and render creation stuff in `display.h` and `display.c`. This will make our code look more clean and better organized. With this we can start looking into some vector and points for 3D view.
+# Vector and Points
+
+## Vectors
+We know we have two quantities scalar and vector quantities. A scalar would be something like area, temperature or pressure  While a vector would have a magnitude and a direction as well like velocity. 
+
+For computer graphics all we need to remember is that we think of points as vectors. Meaning every point has has vector from origin to that point. Even a cube is just 8 vectors, one vector for every point.
+
+So we need to create a class that lets us thinks about objects in 2D and 3D, but C doesn't came with any vector classes, So we can just create a struct to represent our vectors in two and three dimensions
+```C
+typedef struct {
+	float x;
+	float y;
+	float z;
+} vect3_t;
+```
+We can create this typedef to represents objects like cubes and where every vertex would be a vector. We will also use these structs to create Euler angles, cameras, matrices, etc. For the camera we can think of it having a position vector, a rotation vector and an FOV angle. And it would look like this.
+```C
+typedef struct {
+	vect3_t pos;
+	vect3_t rot;
+	float fov_angle;
+} camera_t;
+```
+**Note** - In C the compiler knows how big the struct it and its gonna store values contiguous vales in memory.
+
+## Representing a cube with vectors
+Now we can try to define a 3D cube using the vectors. For our cube we need vectors to fill the inside of the cube as well. So lets assume we need 9 vectors for every direction for a cube whose middle is at the (0,0,0) point and the vales for the vectors ranges from `-1.0 to 1.0`. So we need `9*9*9` vectors for showing the entire cube.
+
+But after this we need to figure out how to project these points on renderer. We now look at how to project a point.
