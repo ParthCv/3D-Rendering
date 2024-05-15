@@ -127,3 +127,9 @@ typedef struct {
 Now we can try to define a 3D cube using the vectors. For our cube we need vectors to fill the inside of the cube as well. So lets assume we need 9 vectors for every direction for a cube whose middle is at the (0,0,0) point and the vales for the vectors ranges from `-1.0 to 1.0`. So we need `9*9*9` vectors for showing the entire cube.
 
 But after this we need to figure out how to project these points on renderer. We now look at how to project a point.
+
+# Projecting Points
+
+## Orthographic Projection
+This idea is of having these array of 3D points and projecting onto a 2D plane, and depending on how we want the projection we can chose on how to project different points. One simple way is to just ignore the z component, and project the points. We should only we able to see the points in front. This is also known as a Orthographic projection, where we just ignore the z-axis.
+
