@@ -20,6 +20,17 @@ bool initialize_window(void) {
 	SDL_DisplayMode display_mode; //Struct for the display mode
 	SDL_GetCurrentDisplayMode(0, &display_mode); //Need the info for main display and pointer to the struct we created
 
+	// Get number of displays
+	int num_displays = SDL_GetNumVideoDisplays();
+	//printf("Number of displays: %d\n", num_displays);
+
+	// List all displays (optional - for debugging)
+	for (int i = 0; i < num_displays; i++) {
+		SDL_DisplayMode display_mode;
+		SDL_GetCurrentDisplayMode(i, &display_mode);
+		//printf("Display %d: %dx%d @ %dHz\n", i, display_mode.w, display_mode.h, display_mode.refresh_rate);
+	}
+
 	//Now we have access to the width height and refresh rate of the display
 	window_width = display_mode.w;
 	window_height = display_mode.h;
@@ -49,7 +60,7 @@ bool initialize_window(void) {
 	// Params	1 - the window
 	//			2 - default display device (-1 -> idc)
 	//			3 - flags (0 - none)
-	renderer = SDL_CreateRenderer(window, 3, 0);
+	renderer = SDL_CreateRenderer(window, -1, 0);
 
 	if (!renderer) {
 		fprintf(stderr, "Error creating the renderer");

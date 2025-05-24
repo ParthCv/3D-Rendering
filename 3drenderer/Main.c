@@ -106,7 +106,7 @@ void render(void) {
 			projected_point.y + (window_height / 2),
 			4,
 			4,
-			0xFFFFFF00
+			0xFFFF8F00
 		);
 	}
 
