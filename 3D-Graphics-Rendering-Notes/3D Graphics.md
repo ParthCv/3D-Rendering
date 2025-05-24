@@ -133,6 +133,12 @@ But after this we need to figure out how to project these points on renderer. We
 ## Orthographic Projection
 This idea is of having these array of 3D points and projecting onto a 2D plane, and depending on how we want the projection we can chose on how to project different points. One simple way is to just ignore the z component, and project the points. We should only we able to see the points in front. This is also known as a Orthographic projection, where we just ignore the z-axis.
 
-Now lets start but creating a 3D cube with 9 vectors in each axis, so we would have `9*9*9` number of vectors to represent our cube. Now a little bit about how the projection works, for an orthogonal projection of vector `b` 
+Now lets start but creating a 3D cube with 9 vectors in each axis, so we would have `9*9*9` number of vectors to represent our cube. Now a little bit about how the projection works, for an orthogonal projection of vector `b`, if we wanted to project the vector `u` on to the vector `b`, it would look like the image below
 
 ![2D Raser](./img/ortho_proj.png)
+
+Here you can see that the `w` vector is the projection of vector `u` onto `b`. I like to think of projections as a shadow of a vector onto the vector we want to project onto. So for we can simply just take a vec3 and just convert it to a vec2 by ignoring the `z` component. And finally we can add a scale the make point bigger or simulate a field of view effect. 
+
+![Ortho_projection](./img/otho_projection_renderer.png)
+
+The con of this projection is that there is no perception of depth and everything looks flats as we basically ignore the `z` axis. Both far and near objects look the same. So the next thig we need to account for is depth, so next we need to add is perspective projection.
