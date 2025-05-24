@@ -39,6 +39,7 @@ void setup(void) {
 	// Load the array of vectors for the cube
 	int point_counter = 0;
 
+	// Iterate 9 vectors for each direction and create a vector and add it to the cube points
 	for (float x = -1; x <= 1; x += 0.25) {
 		for (float y = -1; y <= 1; y += 0.25) {
 			for (float z = -1; z <= 1; z += 0.25) {
@@ -68,6 +69,7 @@ void process_input(void) {
 	}
 }
 
+// Project points orthogrphically
 vec2_t project(vec3_t point) {
 	// Convering to a projected 3d point in 2d
 	vec2_t projected_point = {

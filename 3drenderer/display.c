@@ -49,7 +49,7 @@ bool initialize_window(void) {
 	// Params	1 - the window
 	//			2 - default display device (-1 -> idc)
 	//			3 - flags (0 - none)
-	renderer = SDL_CreateRenderer(window, -1, 0);
+	renderer = SDL_CreateRenderer(window, 3, 0);
 
 	if (!renderer) {
 		fprintf(stderr, "Error creating the renderer");
@@ -121,7 +121,7 @@ void draw_rect(int x, int y, int width, int height, uint32_t color) {
 }
 
 void draw_pixel(int x, int y, uint32_t color) {
-	if (x >= 0 && x < window_width && y >= 0 && y < window_height) {
+	if (x >= 0 && x < window_width && y >= 0 && y < window_height) { //Check if the pixel is in the screen dimension
 		color_buffer[(window_width * y) + x] = color;
 	}
 }
