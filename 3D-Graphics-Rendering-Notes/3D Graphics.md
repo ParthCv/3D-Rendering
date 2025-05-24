@@ -51,10 +51,11 @@ Then we can draw a color to the rendering by using `SDL_SetRendererDrawColor()` 
 
 After running the code the renderer should look like this.
 
-![Red Image](img/RedWindow.png)
+<div align="center">
+  <img src="./img/RedWindow.png" alt="Red Window" width="400">
+</div>
 
 **Note - for linker error we could pass the lib dependencies as a flag.**
-
 ## Declaring a Color Buffer
 Now we have been able to display and render a window, simple. Next, we want to control each pixel, which brings us to the color buffer / pixel buffer. Basic idea is we can assign a color to each pixel by adjusting numbers. Now the idea is that in memory we have an array with numbers (hexadecimal) which represents our color buffer, which we give to SDL to render as a 'texture'. The size of the array depends on the size of the window.
 
@@ -74,8 +75,9 @@ To represent our color buffer we can just create a pointer to an `uint32_t` so i
 
 We still need to tell the compiler to allocate this memory to store our color buffer with all our encoded color values. We can just use `malloc` to do this to allocate a buffer of size `sizeof(uint32_t) * window_width * window_height` which is just the total bytes needed to represent all the pixels. And now with `[]` we can access each pixel, but keep in mind its not a table but a linear list.  So to access the pixel at row 3 and column 2 you would do it like this, `color_buffer[(window_width)*3 + 2]` because to move down the table you need to traverse down the you need to traverse the whole width of the table and the offset it by the column you want. 
 
-![Color Buffer Image](./img/ColorBufferTable.png)
-
+<div align="center">
+  <img src="./img/ColorBufferTable.png" alt="Color Buffer Table" width="400">
+</div>
 ## SDL Texture
 In our renderer we first need to clear our color buffer.  We should be also able to clear the buffer with a color too. This we can just loop our color buffer and manually set the color for every item in the buffer. Now even after we set the buffer it doesn't actually set the buffer color on the renderer.
 
@@ -85,13 +87,14 @@ Other than this we need a function to update the texture every "frame". SDL has 
 
 Now with all this in we have a simple 2D raster in place and we have full control of our color buffer, with this we can change even a subsection of the window.
 
-![2D Raser](./img/2DRaster.png)
+<div align="center">
+  <img src="./img/2DRaster.png" alt="2D Raster" width="400">
+</div>
 
 ## Fullscreen Window
 Now something we really want is to set the display to Fullscreen, why not? So for the full screen all we need to do is change the window width and height. We can use `SDL_DisplayMode` to get the current monitors window width and height which we can assign to our SDL window.
 
 But this is not real full screen but just a borderless window being stretched to cover the screen. We can fix this by using `SDL_SetWindowFullscreen` which changes the window to real full screen with video mode.
-
 ## Conclusion
 Now we have made our simple 2D raster from scratch. We have full control over every pixel and we have a simple game loop as well. I added some functionality to prove this by adding functions to draw rectangles and grids. But the code is messy and all in a single file so we should refactor before moving forward.
 # Header File Setup
@@ -141,9 +144,22 @@ Now lets start but creating a 3D cube with 9 vectors in each axis, so we would h
 
 Here you can see that the `w` vector is the projection of vector `u` onto `b`. I like to think of projections as a shadow of a vector onto the vector we want to project onto. So for we can simply just take a vec3 and just convert it to a vec2 by ignoring the `z` component. And finally we can add a scale the make point bigger or simulate a field of view effect. 
 
-![Ortho_projection](./img/otho_projection_renderer.png)
-
+<div align="center">
+  <img src="./img/otho_projection_renderer.png" alt="ortho projection renderer" width="500">
+</div>
 The con of this projection is that there is no perception of depth and everything looks flats as we basically ignore the `z` axis. Both far and near objects look the same. So the next thig we need to account for is depth, so next we need to add is perspective projection.
 ## Isometric Projection
-Isometric projection is also another way to fake 3D in 2D. In a true isometric projection all the angles between the 3 axis is 120 degrees, which is why the name, **iso**(same) **metric**(measurement)
-![[img/iso_metric.png]]
+Isometric projection is also another way to fake 3D in 2D. In a true isometric projection all the angles between the 3 axis is 120 degrees, which is why the name, **iso**(same) **metric**(measurement).
+
+<div align="center">
+  <img src="./img/iso_metric.png" alt="Iso Metric" width="400">
+</div>
+
+Game designers will create a bunch of 2D tiles that look 3D but have no real triangles or polygons. They might have an isometric '3D look' to them, but most of the time all they do is to pre-render images as 2D textures and simply position them in a way that makes the game "look" 3D. 
+
+Most games that we call “isometric” are **not** really isometric either. Most of the games are programmed using an angle between the axis that does **not** equal 120 degrees. Instead, they use 116.57 and 126.87 degrees. The angle between the axis in this configuration gives us tiles with a perfect **2:1** pixel ratio. This makes some trigonometric computations easier, but it also makes things easier for the artist that needs to draw the tiles. All we need to tell them is to create tiles that have dimensions of **2:1**; for example, 100x50 pixels or 64x32 pixels.
+
+<div align="center">
+  <img src="./img/iso_view.png" alt="Iso View" width="700">
+</div>
+

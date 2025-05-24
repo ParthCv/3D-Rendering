@@ -22,17 +22,27 @@
             }
           },
           {
+            "id": "06ebab127383e4e0",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.8.10"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.8.10"
+            }
+          },
+          {
             "id": "c862167977b4a461",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "3D Graphics.md",
-                "mode": "source",
-                "source": false
+                "file": "img/iso_view.png"
               },
-              "icon": "lucide-file",
-              "title": "3D Graphics"
+              "icon": "lucide-image",
+              "title": "iso_view"
             }
           }
         ]
@@ -175,11 +185,12 @@
   },
   "active": "54ffd396bff70693",
   "lastOpenFiles": [
+    "img/iso_view.png",
+    "3D Graphics.md",
     "img/RedWindow.png",
     "img/rasterGridAndRect.png",
     "img/otho_projection_renderer.png",
     "img/iso_metric.png",
-    "3D Graphics.md",
     "img/Miguel_Resume.pdf",
     "img/Miguel_Resume.pdf.crdownload",
     "img/resume_Dec2023.pdf",
