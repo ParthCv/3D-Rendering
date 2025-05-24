@@ -133,3 +133,6 @@ But after this we need to figure out how to project these points on renderer. We
 ## Orthographic Projection
 This idea is of having these array of 3D points and projecting onto a 2D plane, and depending on how we want the projection we can chose on how to project different points. One simple way is to just ignore the z component, and project the points. We should only we able to see the points in front. This is also known as a Orthographic projection, where we just ignore the z-axis.
 
+Now lets start but creating a 3D cube with 9 vectors in each axis, so we would have `9*9*9` number of vectors to represent our cube. Now a little bit about how the projection works, for an orthogonal projection of vector `b` 
+
+![2D Raser](./img/ortho_proj.png)

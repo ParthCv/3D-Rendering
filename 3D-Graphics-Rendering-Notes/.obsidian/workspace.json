@@ -16,10 +16,41 @@
                 "file": "3D Graphics.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "icon": "lucide-file",
+              "title": "3D Graphics"
+            }
+          },
+          {
+            "id": "c862167977b4a461",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "3D Graphics.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "3D Graphics"
+            }
+          },
+          {
+            "id": "815fdfbfc6c817f9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "3D Graphics.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "3D Graphics"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -38,8 +69,11 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
-              }
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -54,7 +88,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -62,15 +98,16 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "fd3a75f959c4d638",
@@ -86,7 +123,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "3D Graphics.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -94,7 +130,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
             }
           },
           {
@@ -103,10 +141,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "3D Graphics.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
             }
           },
           {
@@ -117,7 +156,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -125,9 +166,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "3D Graphics.md"
-              }
+              "state": {},
+              "icon": "lucide-list",
+              "title": "Outline"
             }
           }
         ]
@@ -147,8 +188,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "54ffd396bff70693",
+  "active": "815fdfbfc6c817f9",
   "lastOpenFiles": [
+    "img/Miguel_Resume.pdf",
+    "img/Miguel_Resume.pdf.crdownload",
+    "img/resume_Dec2023.pdf",
+    "img/resume_Dec2023.pdf.crdownload",
+    "img/ortho_proj.png",
+    "img/ortho_proj.png.crdownload",
     "img/rasterGridAndRect.png",
     "img/2DRaster.png",
     "img/ColorBufferTable.png",
